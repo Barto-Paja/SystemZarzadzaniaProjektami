@@ -1,0 +1,89 @@
+<XmlTransformation Version="1.0"><Transform Direction="ToXml"><SelectEach from="DATAPACKET\ROWDATA\ROW" dest="\encje\Encja"><SelectEach from="Atrybut\ROWAtrybut" dest="\Atrybuty\Atrybut"><Select from="@Nazwa" dest="\Nazwa"/><Select from="@Wymagalnosc" dest="\Wymagalnosc"/><Select from="@CzyKlucz" dest="\CzyKlucz"/><Select from="@Opis" dest="\Opis"/></SelectEach><Select from="@id" dest="@id"/><Select from="@Nazwa" dest="\Nazwa"/><Select from="@Opis" dest="\Opis"/><SelectEach from="Referencja\ROWReferencja" dest="\Referencje\Referencja"><Select from="@NazwaEncjiRef" dest="\NazwaEncjiRef"/><Select from="@Typ" dest="\Typ"/><SelectEach from="AtrybutyLocal\ROWAtrybutyLocal" dest="\AtrybutyLocal"><Select from="@NazwaAtrybutu" dest="\NazwaAtrybutu"/><Select from="@NazwaAtrybutuRef" dest="\NazwaAtrybutuRef"/></SelectEach></SelectEach></SelectEach></Transform><XmlSchema RootName="encje"><![CDATA[<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="encje" type="encjeType"/>
+  <xs:complexType name="encjeType">
+    <xs:sequence>
+      <xs:element name="Encja" type="EncjaType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Encja" type="EncjaType"/>
+  <xs:complexType name="EncjaType">
+    <xs:sequence>
+      <xs:element name="Nazwa" type="NazwaType"/>
+      <xs:element name="Opis" type="OpisType"/>
+      <xs:element name="Atrybuty" type="AtrybutyType"/>
+      <xs:element name="Referencje" type="ReferencjeType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" use="required"/>
+  </xs:complexType>
+  <xs:element name="Referencje" type="ReferencjeType"/>
+  <xs:complexType name="ReferencjeType">
+    <xs:sequence>
+      <xs:element name="Referencja" type="ReferencjaType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Atrybuty" type="AtrybutyType"/>
+  <xs:complexType name="AtrybutyType">
+    <xs:sequence>
+      <xs:element name="Atrybut" type="AtrybutType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Atrybut" type="AtrybutType"/>
+  <xs:complexType name="AtrybutType">
+    <xs:sequence>
+      <xs:element name="Nazwa" type="NazwaType"/>
+      <xs:element name="Wymagalnosc" type="WymagalnoscType"/>
+      <xs:element name="CzyKlucz" type="CzyKluczType"/>
+      <xs:element name="Opis" type="OpisType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Referencja" type="ReferencjaType"/>
+  <xs:complexType name="ReferencjaType">
+    <xs:sequence>
+      <xs:element name="NazwaEncjiRef" type="NazwaEncjiRefType"/>
+      <xs:element name="Typ" type="TypType"/>
+      <xs:element name="AtrybutyLocal" type="AtrybutyLocalType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Nazwa" type="NazwaType"/>
+  <xs:simpleType name="NazwaType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="Wymagalnosc" type="WymagalnoscType"/>
+  <xs:simpleType name="WymagalnoscType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="CzyKlucz" type="CzyKluczType"/>
+  <xs:simpleType name="CzyKluczType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="Opis" type="OpisType"/>
+  <xs:simpleType name="OpisType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="NazwaEncjiRef" type="NazwaEncjiRefType"/>
+  <xs:simpleType name="NazwaEncjiRefType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="Typ" type="TypType"/>
+  <xs:simpleType name="TypType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="AtrybutyLocal" type="AtrybutyLocalType"/>
+  <xs:complexType name="AtrybutyLocalType">
+    <xs:sequence>
+      <xs:element name="NazwaAtrybutu" type="NazwaAtrybutuType"/>
+      <xs:element name="NazwaAtrybutuRef" type="NazwaAtrybutuRefType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NazwaAtrybutu" type="NazwaAtrybutuType"/>
+  <xs:simpleType name="NazwaAtrybutuType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="NazwaAtrybutuRef" type="NazwaAtrybutuRefType"/>
+  <xs:simpleType name="NazwaAtrybutuRefType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+</xs:schema>]]></XmlSchema><CdsSkeleton><![CDATA[<DATAPACKET Version="2.0"><METADATA><FIELDS><FIELD attrname="id" fieldtype="string" WIDTH="31" required="true"/><FIELD attrname="Nazwa" fieldtype="string" WIDTH="31"/><FIELD attrname="Opis" fieldtype="string" WIDTH="31"/><FIELD attrname="Atrybut" fieldtype="nested"><FIELDS><FIELD attrname="Nazwa" fieldtype="string" WIDTH="31"/><FIELD attrname="Wymagalnosc" fieldtype="string" WIDTH="31"/><FIELD attrname="CzyKlucz" fieldtype="string" WIDTH="31"/><FIELD attrname="Opis" fieldtype="string" WIDTH="31"/></FIELDS><PARAMS/></FIELD><FIELD attrname="Referencja" fieldtype="nested"><FIELDS><FIELD attrname="NazwaEncjiRef" fieldtype="string" WIDTH="31"/><FIELD attrname="Typ" fieldtype="string" WIDTH="31"/><FIELD attrname="AtrybutyLocal" fieldtype="nested"><FIELDS><FIELD attrname="NazwaAtrybutu" fieldtype="string" WIDTH="31"/><FIELD attrname="NazwaAtrybutuRef" fieldtype="string" WIDTH="31"/></FIELDS><PARAMS/></FIELD></FIELDS><PARAMS/></FIELD></FIELDS><PARAMS/></METADATA><ROWDATA/><METADATA><FIELDS><FIELD attrname="id" fieldtype="string" WIDTH="31" required="true"/><FIELD attrname="Nazwa" fieldtype="string" WIDTH="31"/><FIELD attrname="Opis" fieldtype="string" WIDTH="31"/><FIELD attrname="Atrybut" fieldtype="nested"><FIELDS><FIELD attrname="Nazwa" fieldtype="string" WIDTH="31"/><FIELD attrname="Wymagalnosc" fieldtype="string" WIDTH="31"/><FIELD attrname="CzyKlucz" fieldtype="string" WIDTH="31"/><FIELD attrname="Opis" fieldtype="string" WIDTH="31"/></FIELDS><PARAMS/></FIELD><FIELD attrname="Referencja" fieldtype="nested"><FIELDS><FIELD attrname="NazwaEncjiRef" fieldtype="string" WIDTH="31"/><FIELD attrname="Typ" fieldtype="string" WIDTH="31"/><FIELD attrname="AtrybutyLocal" fieldtype="nested"><FIELDS><FIELD attrname="NazwaAtrybutu" fieldtype="string" WIDTH="31"/><FIELD attrname="NazwaAtrybutuRef" fieldtype="string" WIDTH="31"/></FIELDS><PARAMS/></FIELD></FIELDS><PARAMS/></FIELD></FIELDS><PARAMS/></METADATA><ROWDATA/></DATAPACKET>
+]]></CdsSkeleton><XslTransform/><Skeleton><![CDATA[<?xml version="1.0"?>
+<encje><Encja id=""><Nazwa></Nazwa><Opis></Opis><Atrybuty><Atrybut><Nazwa></Nazwa><Wymagalnosc></Wymagalnosc><CzyKlucz></CzyKlucz><Opis></Opis></Atrybut></Atrybuty><Referencje><Referencja><NazwaEncjiRef></NazwaEncjiRef><Typ></Typ><AtrybutyLocal><NazwaAtrybutu></NazwaAtrybutu><NazwaAtrybutuRef></NazwaAtrybutuRef></AtrybutyLocal></Referencja></Referencje></Encja></encje>
+]]></Skeleton></XmlTransformation>

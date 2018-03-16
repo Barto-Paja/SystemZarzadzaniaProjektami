@@ -1,0 +1,16 @@
+<!ELEMENT encje (Encja+)>
+<!ELEMENT Encja (Nazwa,Opis,Atrybuty,Referencje)>
+<!ELEMENT Referencje (Referencja*)>
+<!ELEMENT Atrybuty (Atrybut+)>
+<!ELEMENT Atrybut (Nazwa,Wymagalnosc,CzyKlucz,Opis)>
+<!ELEMENT Referencja (NazwaEncjiRef,Typ,AtrybutyLocal+)>
+<!ELEMENT Nazwa (#PCDATA)>
+<!ELEMENT Wymagalnosc (#PCDATA)>
+<!ELEMENT CzyKlucz (#PCDATA)>
+<!ELEMENT Opis (#PCDATA)>
+<!ELEMENT NazwaEncjiRef (#PCDATA)>
+<!ELEMENT Typ (#PCDATA)>
+<!ELEMENT AtrybutyLocal (NazwaAtrybutu,NazwaAtrybutuRef)>
+<!ELEMENT NazwaAtrybutu (#PCDATA)>
+<!ELEMENT NazwaAtrybutuRef (#PCDATA)>
+<!ATTLIST Encja id ID  #REQUIRED>

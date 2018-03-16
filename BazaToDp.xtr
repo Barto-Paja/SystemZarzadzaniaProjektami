@@ -1,0 +1,171 @@
+<XmlTransformation Version="1.0"><Transform Direction="ToCds"><SelectEach dest="DATAPACKET\ROWDATA\ROW" from="\Baza"><SelectEach dest="Tabela\ROWTabela" from="\Tabele\Tabela"><SelectEach dest="Pole\ROWPole" from="\Pola\Pole"><Select dest="@NazwaPola" from="\NazwaPola"/><Select dest="@CzyNull" from="\CzyNull"/><Select dest="@CzyKlucz" from="\CzyKlucz"/><Select dest="@OpisPola" from="\OpisPola"/><Select dest="@TypPola" from="\TypPola"/><Select dest="@RozmiarPola" from="\RozmiarPola"/><Select dest="@PrecyzjaPola" from="\PrecyzjaPola"/></SelectEach><Select dest="@NazwaTabeli" from="\NazwaTabeli"/><Select dest="@OpisTabeli" from="\OpisTabeli"/><SelectEach dest="KluczObcy\ROWKluczObcy" from="\KluczeObce\KluczObcy"><Select dest="@NazwaKlucza" from="\NazwaKlucza"/><Select dest="@NazwaTabeliForeign" from="\NazwaTabeliForeign"/><Select dest="@TypKlucza" from="\TypKlucza"/><SelectEach dest="PoleKluczowe\ROWPoleKluczowe" from="\PolaKluczowe\PoleKluczowe"><Select dest="@NazwaPolaLocal" from="\NazwaPolaLocal"/><Select dest="@NazwaPolaForeign" from="\NazwaPolaForeign"/></SelectEach></SelectEach></SelectEach><Select dest="@Sid" from="\Sid"/><SelectEach dest="Indeks\ROWIndeks" from="\Indeksy\Indeks"><Select dest="@NazwaIndeksu" from="\NazwaIndeksu"/><Select dest="@OpisIndeksu" from="\OpisIndeksu"/><SelectEach dest="PoleIndeksu\ROWPoleIndeksu" from="\PolaIndeksu\PoleIndeksu"><Select dest="@NazwaPola" from="\NazwaPola"/><Select dest="@KierunekSortowania" from="\KierunekSortowania"/></SelectEach></SelectEach></SelectEach></Transform><XmlSchema RootName="Baza"><![CDATA[<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Baza" type="BazaType"/>
+  <xs:complexType name="BazaType">
+    <xs:sequence>
+      <xs:element name="Sid" type="SidType"/>
+      <xs:element name="Tabele" type="TabeleType"/>
+      <xs:element name="Indeksy" type="IndeksyType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Sid" type="SidType"/>
+  <xs:simpleType name="SidType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="Tabele" type="TabeleType"/>
+  <xs:complexType name="TabeleType">
+    <xs:sequence>
+      <xs:element name="Tabela" type="TabelaType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Tabela" type="TabelaType"/>
+  <xs:complexType name="TabelaType">
+    <xs:sequence>
+      <xs:element name="NazwaTabeli" type="NazwaTabeliType"/>
+      <xs:element name="OpisTabeli" type="OpisTabeliType"/>
+      <xs:element name="Pola" type="PolaType"/>
+      <xs:element name="KluczeObce" type="KluczeObceType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NazwaTabeli" type="NazwaTabeliType"/>
+  <xs:simpleType name="NazwaTabeliType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="OpisTabeli" type="OpisTabeliType"/>
+  <xs:simpleType name="OpisTabeliType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="Pola" type="PolaType"/>
+  <xs:complexType name="PolaType">
+    <xs:sequence>
+      <xs:element name="Pole" type="PoleType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Pole" type="PoleType"/>
+  <xs:complexType name="PoleType">
+    <xs:sequence>
+      <xs:element name="NazwaPola" type="NazwaPolaType"/>
+      <xs:element name="CzyNull" type="CzyNullType"/>
+      <xs:element name="CzyKlucz" type="CzyKluczType"/>
+      <xs:element name="OpisPola" type="OpisPolaType"/>
+      <xs:element name="TypPola" type="TypPolaType"/>
+      <xs:element name="RozmiarPola" type="RozmiarPolaType"/>
+      <xs:element name="PrecyzjaPola" type="PrecyzjaPolaType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NazwaPola" type="NazwaPolaType"/>
+  <xs:simpleType name="NazwaPolaType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="CzyNull" type="CzyNullType"/>
+  <xs:simpleType name="CzyNullType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="CzyKlucz" type="CzyKluczType"/>
+  <xs:simpleType name="CzyKluczType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="OpisPola" type="OpisPolaType"/>
+  <xs:simpleType name="OpisPolaType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="TypPola" type="TypPolaType"/>
+  <xs:simpleType name="TypPolaType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="RozmiarPola" type="RozmiarPolaType"/>
+  <xs:simpleType name="RozmiarPolaType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="PrecyzjaPola" type="PrecyzjaPolaType"/>
+  <xs:simpleType name="PrecyzjaPolaType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="KluczeObce" type="KluczeObceType"/>
+  <xs:complexType name="KluczeObceType">
+    <xs:sequence>
+      <xs:element name="KluczObcy" type="KluczObcyType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="KluczObcy" type="KluczObcyType"/>
+  <xs:complexType name="KluczObcyType">
+    <xs:sequence>
+      <xs:element name="NazwaKlucza" type="NazwaKluczaType"/>
+      <xs:element name="NazwaTabeliForeign" type="NazwaTabeliForeignType"/>
+      <xs:element name="TypKlucza" type="TypKluczaType"/>
+      <xs:element name="PolaKluczowe" type="PolaKluczoweType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NazwaKlucza" type="NazwaKluczaType"/>
+  <xs:simpleType name="NazwaKluczaType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="TypKlucza" type="TypKluczaType"/>
+  <xs:simpleType name="TypKluczaType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="NazwaTabeliForeign" type="NazwaTabeliForeignType"/>
+  <xs:simpleType name="NazwaTabeliForeignType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="PolaKluczowe" type="PolaKluczoweType"/>
+  <xs:complexType name="PolaKluczoweType">
+    <xs:sequence>
+      <xs:element name="PoleKluczowe" type="PoleKluczoweType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PoleKluczowe" type="PoleKluczoweType"/>
+  <xs:complexType name="PoleKluczoweType">
+    <xs:sequence>
+      <xs:element name="NazwaPolaLocal" type="NazwaPolaLocalType"/>
+      <xs:element name="NazwaPolaForeign" type="NazwaPolaForeignType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NazwaPolaLocal" type="NazwaPolaLocalType"/>
+  <xs:simpleType name="NazwaPolaLocalType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="NazwaPolaForeign" type="NazwaPolaForeignType"/>
+  <xs:simpleType name="NazwaPolaForeignType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="Indeksy" type="IndeksyType"/>
+  <xs:complexType name="IndeksyType">
+    <xs:sequence>
+      <xs:element name="Indeks" type="IndeksType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Indeks" type="IndeksType"/>
+  <xs:complexType name="IndeksType">
+    <xs:sequence>
+      <xs:element name="NazwaIndeksu" type="NazwaIndeksuType"/>
+      <xs:element name="OpisIndeksu" type="OpisIndeksuType"/>
+      <xs:element name="PolaIndeksu" type="PolaIndeksuType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NazwaIndeksu" type="NazwaIndeksuType"/>
+  <xs:simpleType name="NazwaIndeksuType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="OpisIndeksu" type="OpisIndeksuType"/>
+  <xs:simpleType name="OpisIndeksuType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:element name="PolaIndeksu" type="PolaIndeksuType"/>
+  <xs:complexType name="PolaIndeksuType">
+    <xs:sequence>
+      <xs:element name="PoleIndeksu" type="PoleIndeksuType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PoleIndeksu" type="PoleIndeksuType"/>
+  <xs:complexType name="PoleIndeksuType">
+    <xs:sequence>
+      <xs:element name="NazwaPola" type="NazwaPolaType"/>
+      <xs:element name="KierunekSortowania" type="KierunekSortowaniaType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="KierunekSortowania" type="KierunekSortowaniaType"/>
+  <xs:simpleType name="KierunekSortowaniaType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+</xs:schema>]]></XmlSchema><CdsSkeleton/><XslTransform/><Skeleton><![CDATA[<?xml version="1.0"?><DATAPACKET Version="2.0"><METADATA><FIELDS><FIELD attrname="Sid" fieldtype="string" WIDTH="31"/><FIELD attrname="Tabela" fieldtype="nested"><FIELDS><FIELD attrname="NazwaTabeli" fieldtype="string" WIDTH="31"/><FIELD attrname="OpisTabeli" fieldtype="string" WIDTH="100"/><FIELD attrname="Pole" fieldtype="nested"><FIELDS><FIELD attrname="NazwaPola" fieldtype="string" WIDTH="31"/><FIELD attrname="CzyNull" fieldtype="string" WIDTH="31"/><FIELD attrname="CzyKlucz" fieldtype="string" WIDTH="31"/><FIELD attrname="OpisPola" fieldtype="string" WIDTH="100"/><FIELD attrname="TypPola" fieldtype="string" WIDTH="31"/><FIELD attrname="RozmiarPola" fieldtype="string" WIDTH="31"/><FIELD attrname="PrecyzjaPola" fieldtype="string" WIDTH="31"/></FIELDS><PARAMS/></FIELD><FIELD attrname="KluczObcy" fieldtype="nested"><FIELDS><FIELD attrname="NazwaKlucza" fieldtype="string" WIDTH="31"/><FIELD attrname="NazwaTabeliForeign" fieldtype="string" WIDTH="31"/><FIELD attrname="TypKlucza" fieldtype="string" WIDTH="31"/><FIELD attrname="PoleKluczowe" fieldtype="nested"><FIELDS><FIELD attrname="NazwaPolaLocal" fieldtype="string" WIDTH="31"/><FIELD attrname="NazwaPolaForeign" fieldtype="string" WIDTH="31"/></FIELDS><PARAMS/></FIELD></FIELDS><PARAMS/></FIELD></FIELDS><PARAMS/></FIELD><FIELD attrname="Indeks" fieldtype="nested"><FIELDS><FIELD attrname="NazwaIndeksu" fieldtype="string" WIDTH="31"/><FIELD attrname="OpisIndeksu" fieldtype="string" WIDTH="100"/><FIELD attrname="PoleIndeksu" fieldtype="nested"><FIELDS><FIELD attrname="NazwaPola" fieldtype="string" WIDTH="31"/><FIELD attrname="KierunekSortowania" fieldtype="string" WIDTH="31"/></FIELDS><PARAMS/></FIELD></FIELDS><PARAMS/></FIELD></FIELDS><PARAMS/></METADATA><ROWDATA/><METADATA><FIELDS><FIELD attrname="Sid" fieldtype="string" WIDTH="31"/><FIELD attrname="Tabela" fieldtype="nested"><FIELDS><FIELD attrname="NazwaTabeli" fieldtype="string" WIDTH="31"/><FIELD attrname="OpisTabeli" fieldtype="string" WIDTH="100"/><FIELD attrname="Pole" fieldtype="nested"><FIELDS><FIELD attrname="NazwaPola" fieldtype="string" WIDTH="31"/><FIELD attrname="CzyNull" fieldtype="string" WIDTH="31"/><FIELD attrname="CzyKlucz" fieldtype="string" WIDTH="31"/><FIELD attrname="OpisPola" fieldtype="string" WIDTH="100"/><FIELD attrname="TypPola" fieldtype="string" WIDTH="31"/><FIELD attrname="RozmiarPola" fieldtype="string" WIDTH="31"/><FIELD attrname="PrecyzjaPola" fieldtype="string" WIDTH="31"/></FIELDS><PARAMS/></FIELD><FIELD attrname="KluczObcy" fieldtype="nested"><FIELDS><FIELD attrname="NazwaKlucza" fieldtype="string" WIDTH="31"/><FIELD attrname="NazwaTabeliForeign" fieldtype="string" WIDTH="31"/><FIELD attrname="TypKlucza" fieldtype="string" WIDTH="31"/><FIELD attrname="PoleKluczowe" fieldtype="nested"><FIELDS><FIELD attrname="NazwaPolaLocal" fieldtype="string" WIDTH="31"/><FIELD attrname="NazwaPolaForeign" fieldtype="string" WIDTH="31"/></FIELDS><PARAMS/></FIELD></FIELDS><PARAMS/></FIELD></FIELDS><PARAMS/></FIELD><FIELD attrname="Indeks" fieldtype="nested"><FIELDS><FIELD attrname="NazwaIndeksu" fieldtype="string" WIDTH="31"/><FIELD attrname="OpisIndeksu" fieldtype="string" WIDTH="100"/><FIELD attrname="PoleIndeksu" fieldtype="nested"><FIELDS><FIELD attrname="NazwaPola" fieldtype="string" WIDTH="31"/><FIELD attrname="KierunekSortowania" fieldtype="string" WIDTH="31"/></FIELDS><PARAMS/></FIELD></FIELDS><PARAMS/></FIELD></FIELDS><PARAMS/></METADATA><ROWDATA/></DATAPACKET>
+]]></Skeleton></XmlTransformation>
